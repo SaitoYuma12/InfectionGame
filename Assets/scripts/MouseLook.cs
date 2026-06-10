@@ -6,13 +6,15 @@ class MouseLook : MonoBehaviour
     [SerializeField] float _mouseSensitivity = 0.1f;//マウス感度
     [SerializeField] Transform _playerBody;
 
+    [SerializeField] private PlayerInput _playerInput;
+
     private InputAction _lookAction;
 
     private float _xRotation = 0f;
 
-    private void Start()
+    private void Awake()
     {
-        _lookAction = InputSystem.actions.FindAction("Look");
+        _lookAction = _playerInput.actions["Look"];
         Cursor.lockState = CursorLockMode.Locked;//マウスカーソルを中央に固定
     }
 
