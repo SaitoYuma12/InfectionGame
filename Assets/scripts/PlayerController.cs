@@ -48,20 +48,20 @@ class PlayerController : MonoBehaviour
 
     private void Move(Vector2 input)
     {
-        float _currentSpeed;
+        float currentSpeed;
 
         if (_dashAction.IsPressed())
         {
-            _currentSpeed = _dashSpeed;
+            currentSpeed = _dashSpeed;
         }
         else
         {
-            _currentSpeed = _moveSpeed;
+            currentSpeed = _moveSpeed;
         }
 
         Vector3 moveDirection = transform.right * input.x + transform.forward * input.y;
 
-        Vector3 velocity = new Vector3(moveDirection.x * _currentSpeed, _rb.linearVelocity.y,moveDirection.z * _currentSpeed);
+        Vector3 velocity = new Vector3(moveDirection.x * currentSpeed, _rb.linearVelocity.y,moveDirection.z * currentSpeed);
 
         _rb.linearVelocity = velocity;
     }
