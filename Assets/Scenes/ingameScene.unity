@@ -689,6 +689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _moveSpeed: 5
+  _dashSpeed: 10
   _jumpPower: 5
   _playerInput: {fileID: 1852582373}
 --- !u!1660057539 &9223372036854775807

@@ -61,7 +61,7 @@ class PlayerController : MonoBehaviour
 
         Vector3 moveDirection = transform.right * input.x + transform.forward * input.y;
 
-        Vector3 velocity = new Vector3(moveDirection.x * _currentSpeed, _rb.linearVelocity.y,moveDirection.z * _moveSpeed);
+        Vector3 velocity = new Vector3(moveDirection.x * _currentSpeed, _rb.linearVelocity.y,moveDirection.z * _currentSpeed);
 
         _rb.linearVelocity = velocity;
     }
