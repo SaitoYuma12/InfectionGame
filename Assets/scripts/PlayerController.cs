@@ -7,7 +7,6 @@ class PlayerController : MonoBehaviour
     [SerializeField] private float _dashSpeed = 10.0f;
     [SerializeField] private float _jumpPower = 3.0f;
 
-    private bool _isGrounded;
 
     [SerializeField] private PlayerInput _playerInput;
 
@@ -18,6 +17,7 @@ class PlayerController : MonoBehaviour
     private Rigidbody _rb;
 
     private Vector2 _moveInput;
+    private bool _isGrounded;
 
     private void Awake()
     {
@@ -26,6 +26,11 @@ class PlayerController : MonoBehaviour
         _jumpAction = _playerInput.actions["Jump"];
 
         _rb = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        _isGrounded = true;
     }
 
     private void Update()
@@ -50,7 +55,7 @@ class PlayerController : MonoBehaviour
     {
         float currentSpeed;
 
-        if (_dashAction.IsPressed())
+        if (_dashAction.IsPressed() && _isGrounded)
         {
             currentSpeed = _dashSpeed;
         }
@@ -60,6 +65,11 @@ class PlayerController : MonoBehaviour
         }
 
         Vector3 moveDirection = transform.right * input.x + transform.forward * input.y;
+
+        if (moveDirection.sqrMagnitude > 1f)
+        {
+            moveDirection.Normalize();
+        }
 
         Vector3 velocity = new Vector3(moveDirection.x * currentSpeed, _rb.linearVelocity.y,moveDirection.z * currentSpeed);
 
@@ -79,6 +89,14 @@ class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             _isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            _isGrounded = false;
         }
     }
 
