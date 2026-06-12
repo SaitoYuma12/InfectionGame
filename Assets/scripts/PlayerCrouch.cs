@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 class PlayerCrouch : MonoBehaviour
 {
     [SerializeField] private float _usuallySize = 2.0f;
-    [SerializeField] private float _CrouchSize = 1.0f;
+    [SerializeField] private float _crouchSize = 1.0f;
 
     [SerializeField] private PlayerInput _playerInput;
 
@@ -24,11 +24,13 @@ class PlayerCrouch : MonoBehaviour
     {
         if (_crouchAction.IsPressed())
         {
-            _capsuleCol.height = _CrouchSize;
+            _capsuleCol.height = _crouchSize;
+            _capsuleCol.center = new Vector3(0, _crouchSize / 2, 0);
         }
         else
         {
             _capsuleCol.height = _usuallySize;
+            _capsuleCol.center = new Vector3(0, _usuallySize / 2, 0);
         }
     }
 }
