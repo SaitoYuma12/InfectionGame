@@ -692,6 +692,11 @@ MonoBehaviour:
   _moveSpeed: 5
   _dashSpeed: 10
   _jumpPower: 5
+  _usuallySize: 2
+  _crouchSize: 1
+  _usuallyCamera: 1
+  _crouchCamera: 0.5
+  _camera: {fileID: 330585545}
   _playerInput: {fileID: 1852582373}
 --- !u!114 &1852582375
 MonoBehaviour:
@@ -711,6 +716,16 @@ MonoBehaviour:
   _crouchCamera: 0.5
   _playerInput: {fileID: 1852582373}
   _camera: {fileID: 330585545}
+  _crouchAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 532141a5-a4cf-4043-9726-bc098dc53304
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _capsuleCol: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

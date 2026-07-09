@@ -3,18 +3,28 @@ using UnityEngine.InputSystem;
 
 class PlayerController : MonoBehaviour
 {
+    [Header("ˆÚ“®")]
     [SerializeField] private float _moveSpeed = 3.0f;
     [SerializeField] private float _dashSpeed = 10.0f;
     [SerializeField] private float _jumpPower = 3.0f;
 
+    [Header("‚µ‚á‚ª‚Ý")]
+    [SerializeField] private float _usuallySize = 2.0f;
+    [SerializeField] private float _crouchSize = 1.0f;
+    [SerializeField] private float _usuallyCamera = 1.0f;
+    [SerializeField] private float _crouchCamera = 0.5f;
 
+    [Header("PlayerInput,Camera")]
     [SerializeField] private PlayerInput _playerInput;
+    public Camera _camera;
 
+    private InputAction _crouchAction;
     private InputAction _moveAction;
     private InputAction _jumpAction;
     private InputAction _dashAction;
 
     private Rigidbody _rb;
+    private CapsuleCollider _capsuleCol;
 
     private Vector2 _moveInput;
     private bool _isGrounded;
@@ -24,8 +34,10 @@ class PlayerController : MonoBehaviour
         _moveAction = _playerInput.actions["Move"];
         _dashAction = _playerInput.actions["Dash"];
         _jumpAction = _playerInput.actions["Jump"];
+        _crouchAction = _playerInput.actions["Crouch"];
 
         _rb = GetComponent<Rigidbody>();
+        _capsuleCol = GetComponent<CapsuleCollider>();
     }
 
     private void Start()
@@ -43,7 +55,22 @@ class PlayerController : MonoBehaviour
             Jump();
         }
 
-       
+        if (_crouchAction.IsPressed())
+        {
+            _capsuleCol.height = _crouchSize;
+            _capsuleCol.center = new Vector3(0, _crouchSize / 2, 0);
+
+            _camera.transform.localPosition = new Vector3(0, _crouchCamera, 0);
+        }
+        else
+        {
+            _capsuleCol.height = _usuallySize;
+            _capsuleCol.center = new Vector3(0, _usuallySize / 2, 0);
+
+            _camera.transform.localPosition = new Vector3(0, _usuallyCamera, 0);
+        }
+
+
     }
 
     private void FixedUpdate()
