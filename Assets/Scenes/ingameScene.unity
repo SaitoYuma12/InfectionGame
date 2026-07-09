@@ -707,7 +707,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCrouch
   _usuallySize: 2
   _crouchSize: 1
+  _usuallyCamera: 1
+  _crouchCamera: 0.5
   _playerInput: {fileID: 1852582373}
+  _camera: {fileID: 330585545}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
